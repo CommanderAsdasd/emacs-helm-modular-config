@@ -1,0 +1,2 @@
+Small interface for [[https://github.com/SidharthArya/modular-config.el][Modular config]] package which I found very handy.
+Loads selected modules from modular-config-path, finds module files
