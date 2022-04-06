@@ -1,2 +1,18 @@
+
+* Description
+
 Small interface for [[https://github.com/SidharthArya/modular-config.el][Modular config]] package which I found very handy.
 Loads selected modules from modular-config-path, finds module files
+
+* Installation
+
+  Via [[https://github.com/dimitri/el-get][el-get]]
+
+  Put it to ~el-get-recipe-path~
+  
+  #+begin_src elisp
+(:name helm-modular-config
+       :type git
+       :url "https://github.com/CommanderAsdasd/emacs-helm-modular-config.git"
+       :compile "helm-modular-config.el")
+  #+end_src
