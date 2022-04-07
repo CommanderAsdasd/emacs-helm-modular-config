@@ -16,3 +16,6 @@ Loads selected modules from modular-config-path, finds module files
        :url "https://github.com/CommanderAsdasd/emacs-helm-modular-config.git"
        :compile "helm-modular-config.el")
   #+end_src
+
+  then ~M-x el-get-install helm-modular-config~ 
+  
