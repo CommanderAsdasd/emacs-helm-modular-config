@@ -23,7 +23,7 @@
                     )))))
 
 
-(defun helm-modular-config-load-modules ()
+(defun helm-modular-config ()
   (interactive)
   (helm :sources '(modular-config-helm-source)))
 
