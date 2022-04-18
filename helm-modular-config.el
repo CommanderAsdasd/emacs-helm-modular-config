@@ -1,4 +1,4 @@
-;; helm-modular-config.el -- helm interface for modular-config
+;; helm-modular-config.el --- helm interface for modular-config
 ;; Commander asdasd
 
 (defun helm-modular-config/module-list-candidates ()
@@ -28,3 +28,5 @@
   (helm :sources '(modular-config-helm-source)))
 
 (provide 'helm-modular-config)
+
+;;; helm-modular-config.el ends here
