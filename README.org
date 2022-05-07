@@ -6,6 +6,20 @@ Loads selected modules from modular-config-path, finds module files
 
 * Installation
 
+
+** use-package + straight
+  
+  In my own config now:
+
+  #+begin_src elisp
+    (use-package helm-modular-config
+  :straight (helm-modular-config :type git :host github :repo "CommanderAsdasd/emacs-helm-modular-config")
+  :config (global-set-key (kbd "C-c m") 'helm-modular-config))
+
+  #+end_src
+
+
+** el-get
   Via [[https://github.com/dimitri/el-get][el-get]]
 
   Put it to ~el-get-recipe-path~
