@@ -29,6 +29,8 @@
 
 ;;; Code:
 
+(defcustom helm-modular-config/module-prefix "asdasd-" "new module name starts with STRING")
+
 (defun helm-modular-config/module-list-candidates ()
   "return list of strings - module load candidates"
   (mapcar (lambda (x) (intern (file-name-base x)))
@@ -36,6 +38,24 @@
 
 (defun helm-modular-config/helm-marked-modules-list ()
   (mapcar #'intern (helm-marked-candidates)))
+
+(defun helm-modular-config/new-module () ;; [a1]
+  "new module in modular-config-path"
+  (let* ((file-name (read-string "name: " helm-modular-config/module-prefix))
+	 (file-path (expand-file-name (format "%s.el" file-name) modular-config-path)))
+    (write-region "" nil file-path)
+    (find-file file-path)
+    (file-path)))
+
+(defun helm-modular-config/new-module-load-current-file ()
+  "create new module and push current file as load"
+  (interactive)
+    (let* ((file-name (read-string "name: " helm-modular-config/module-prefix))
+	 (file-path (expand-file-name (format "%s.el" file-name) modular-config-path)))
+      (write-region (format "(load \"%s\")" (buffer-file-name)) nil file-path) ;; [differs from (@ a1) only in this line]
+      (find-file file-path)
+    (file-path)))
+
 
 
 (setq modular-config-helm-source
@@ -48,7 +68,12 @@
                                       (mapcar (lambda (x) (find-file (concat (expand-file-name x modular-config-path) ".el")))
                                               (helm-marked-candidates))
                                       )
-                    )))))
+                    )
+		   ("new module" . (lambda (candidate) (helm-modular-config/new-module))
+                    )
+		   ("This file to new module" . (lambda (candidate) (helm-modular-config/new-module-load-current-file))
+                    )
+		   ))))
 
 
 (defun helm-modular-config ()
