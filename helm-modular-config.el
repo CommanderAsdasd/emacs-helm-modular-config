@@ -76,6 +76,24 @@
 		   ))))
 
 
+(defun helm-modular-config-current-modules-store (filename)
+  "store list of successfully loaded modules to FILENAME"
+  (interactive "FFile:")
+  (with-temp-file filename
+    (print modular-config-current-modules (current-buffer))))
+
+(defun read-from-file (filename)
+		"reads file"
+		(read (with-temp-buffer
+			(insert-file-contents filename)
+			(buffer-string))))
+
+(defun helm-modular-config-file-load (filename)
+  "Load list of modules from FILENAME to modular-config-current-modules"
+  (interactive "FFile: ")
+  (modular-config-load-modules
+  (mapcar #'intern (read-from-file filename)))
+  )
 (defun helm-modular-config ()
   (interactive)
   (helm :sources '(modular-config-helm-source)))
